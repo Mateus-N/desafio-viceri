@@ -11,7 +11,7 @@ public class UpdateHeroiDto
     [Required(ErrorMessage = "O campo de nomeHeroi é obrigatório")]
     public required string NomeHeroi { get; set; }
     public required int[]? SuperPoderes { get; set; }
-    public DateOnly? DataNascimento { get; set; }
+    public DateTime? DataNascimento { get; set; }
     [Required(ErrorMessage = "O campo de altura é obrigatório")]
     public double Altura { get; set; }
     [Required(ErrorMessage = "O campo de peso é obrigatório")]

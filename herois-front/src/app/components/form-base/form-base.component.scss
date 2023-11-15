@@ -1,0 +1,26 @@
+.form {
+  border: 1px solid #000;
+  width: 60%;
+  margin: 24px auto;
+  padding: 0 24px 24px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 0 rgba($color: #000000, $alpha: 0.6);
+  text-align: center;
+  h2 {
+    font-size: 36px;
+    margin: 24px;
+  }
+  form {
+    .input {
+      width: 100%;
+    }
+    .acoes {
+      display: flex;
+      justify-content: space-evenly;
+      button {
+        font-size: 20px;
+        padding: 20px;
+      }
+    }
+  }
+}

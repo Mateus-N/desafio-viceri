@@ -1,0 +1,77 @@
+<app-header [isHome]="false" />
+<div class="form">
+  <h2>{{ title }}</h2>
+  <form [formGroup]="formBase">
+    <mat-form-field class="input" appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome">
+      <mat-error *ngIf="formBase.get('nome')?.errors?.['required']">
+        Nome é obrigatório
+      </mat-error>
+      <mat-error *ngIf="formBase.get('nome')?.errors?.['maxlength']">
+        Nome deve ter ao máximo 120 caracteres
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input" appearance="outline">
+      <mat-label>Nome de Herói</mat-label>
+      <input matInput formControlName="nomeHeroi">
+      <mat-error *ngIf="formBase.get('nomeHeroi')?.errors?.['required']">
+        Nome de Herói é obrigatório
+      </mat-error>
+      <mat-error *ngIf="formBase.get('nomeHeroi')?.errors?.['maxlength']">
+        Nome de Herói deve ter ao máximo 120 caracteres
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input" appearance="outline" *ngIf="ehTelaDeCadastro">
+      <mat-label>Poderes</mat-label>
+      <mat-select
+        placeholder="Poderes"
+        formControlName="superPoderes"
+        [(value)]="poderesSelecionados"
+        multiple
+      >
+        <mat-option *ngFor="let poder of superPoderes" [value]="poder.id">
+          {{ poder.superPoder }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formBase.get('superPoderes')?.errors">
+        É necessário selecionar ao menos um poder
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input" appearance="outline">
+      <mat-label>Data de Nascimento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dataNascimento">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="formBase.get('dataNascimento')?.errors?.['required']">
+        Data de Nascimento é obrigatória
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input" appearance="outline">
+      <mat-label>Peso</mat-label>
+      <input type="number" matInput formControlName="peso">
+      <mat-error *ngIf="formBase.get('peso')?.errors?.['required']">
+        Peso é obrigatório
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input" appearance="outline">
+      <mat-label>Altura</mat-label>
+      <input type="number" matInput formControlName="altura">
+      <mat-error *ngIf="formBase.get('altura')?.errors?.['required']">
+        Altura é obrigatório
+      </mat-error>
+    </mat-form-field>
+    <div class="acoes">
+      <button
+        mat-raised-button
+        (click)="cancelar()"
+      >Cancelar</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!formBase.valid"
+        (click)="enviarFormulario()"
+      >{{ textButton }}</button>
+    </div>
+  </form>
+</div>

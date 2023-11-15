@@ -1,0 +1,40 @@
+<div class="card__heroi">
+  <div class="dados__pessoais">
+    <p>Dados pessoais</p>
+    <ul class="dados__pessoais__lista">
+      <li>
+        <strong>Nome:</strong> <span>{{ heroi.nome }}</span>
+      </li>
+      <li>
+        <strong>Alter Ego:</strong> <span>{{ heroi.nomeHeroi }}</span>
+      </li>
+      <li>
+        <strong>Data de Nascimento:</strong> <span>{{ heroi.dataNascimento | date: 'dd/MM/yyyy' }}</span>
+      </li>
+      <li>
+        <strong>Peso:</strong> <span>{{ heroi.peso }}Kg</span>
+      </li>
+      <li>
+        <strong>Altura:</strong> <span>{{ heroi.altura }}m</span>
+      </li>
+    </ul>
+  </div>
+  <div class="poderes">
+    <p>Poderes</p>
+    <ul class="poderes__lista">
+      <li *ngFor="let poder of heroi.heroiSuperPoderes">{{ poder.superPoderes.superPoder }}</li>
+    </ul>
+  </div>
+  <img
+    src="../../../assets/icons/edit-solid.svg"
+    class="icon"
+    alt="Icone de edição"
+    (click)="editarHeroi()"
+  >
+  <img
+    src="../../../assets/icons/trash-solid.svg"
+    class="icon"
+    alt="Icone de delete"
+    (click)="excluirHeroi()"
+  >
+</div>

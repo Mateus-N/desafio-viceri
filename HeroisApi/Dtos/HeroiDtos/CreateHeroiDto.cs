@@ -12,7 +12,7 @@ public record CreateHeroiDto
     public required string NomeHeroi { get; set; }
     [Required]
     public required int[] SuperPoderes { get; set; }
-    public DateOnly? DataNascimento { get; set; }
+    public DateTime? DataNascimento { get; set; }
     [Required(ErrorMessage = "O campo de altura é obrigatório")]
     public double Altura { get; set; }
     [Required(ErrorMessage = "O campo de peso é obrigatório")]

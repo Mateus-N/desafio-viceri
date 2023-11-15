@@ -1,0 +1,8 @@
+<app-header />
+<div class="container">
+  <app-card-heroi
+    *ngFor="let heroi of herois" [heroi]="heroi"
+    (excluir)="excluirHeroi($event)"
+    (editar)="editarHeroi($event)"
+  />
+</div>
