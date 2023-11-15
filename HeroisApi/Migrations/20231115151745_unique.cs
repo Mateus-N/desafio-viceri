@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -6,11 +7,34 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HeroisApi.Migrations
 {
     /// <inheritdoc />
-    public partial class final : Migration
+    public partial class unique : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Herois",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NomeHeroi = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DataNascimento = table.Column<DateOnly>(type: "date", nullable: true),
+                    Altura = table.Column<double>(type: "double", nullable: false),
+                    Peso = table.Column<double>(type: "double", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Herois", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.CreateTable(
                 name: "SuperPoderes",
                 columns: table => new
@@ -19,7 +43,7 @@ namespace HeroisApi.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     SuperPoder = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    MyProperty = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: true)
+                    Descricao = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -54,6 +78,12 @@ namespace HeroisApi.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Herois_NomeHeroi",
+                table: "Herois",
+                column: "NomeHeroi",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_HeroisSuperPoderes_HeroiId",
                 table: "HeroisSuperPoderes",
                 column: "HeroiId");
@@ -64,6 +94,9 @@ namespace HeroisApi.Migrations
         {
             migrationBuilder.DropTable(
                 name: "HeroisSuperPoderes");
+
+            migrationBuilder.DropTable(
+                name: "Herois");
 
             migrationBuilder.DropTable(
                 name: "SuperPoderes");

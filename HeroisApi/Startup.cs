@@ -1,6 +1,10 @@
 ﻿using HeroisApi.Data;
+using HeroisApi.Exceptions.Helper;
 using HeroisApi.Services;
+using HeroisApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace HeroisApi;
 
@@ -13,15 +17,25 @@ public class Startup(IConfiguration configuration)
         string connectionString = Configuration.GetConnectionString("ContextConnection")!;
 
         services.AddDbContext<AppDbContext>(opts => opts
+            .UseLazyLoadingProxies()
             .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
         );
 
-        services.AddScoped<SuperPoderService, SuperPoderService>();
+        services.AddScoped<ISuperPoderService, SuperPoderService>();
+        services.AddScoped<IHeroiService, HeroiService>();
+        services.AddScoped<IHeroiExceptionHelper, HeroiExceptionHelper>();
+        services.AddScoped<IHeroisSuperPoderesService, HeroisSuperPoderesService>();
 
         services.AddCors();
-        services.AddSwaggerGen();
         services.AddControllers();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "HeroisApi", Version = "v1" });
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            c.IncludeXmlComments(xmlPath);
+        });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -29,7 +43,10 @@ public class Startup(IConfiguration configuration)
         if (env.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "HeroisApi V1");
+            });
         }
 
         app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
