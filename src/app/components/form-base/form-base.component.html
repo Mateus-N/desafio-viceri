@@ -40,7 +40,13 @@
     </mat-form-field>
     <mat-form-field class="input" appearance="outline">
       <mat-label>Data de Nascimento</mat-label>
-      <input matInput placeholder="DD/MM/AAAA" (keyup)="addBarra($event)" [matDatepicker]="picker" formControlName="dataNascimento">
+      <input
+        matInput
+        placeholder="DD/MM/AAAA"
+        (keyup)="addBarra($event)"
+        [matDatepicker]="picker"
+        formControlName="dataNascimento"
+      >
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="formBase.get('dataNascimento')?.errors?.['required']">
