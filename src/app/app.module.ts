@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,6 +21,7 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { FormBaseComponent } from './components/form-base/form-base.component';
 import { UpdateComponent } from './pages/update/update.component';
 import { StatusCodeInterceptor } from './core/interceptors/status-code.interceptor';
+import { CustomDateAdapter } from './components/form-base/custom-date-adapter';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { StatusCodeInterceptor } from './core/interceptors/status-code.intercept
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-br'},
+    {provide: DateAdapter, useClass: CustomDateAdapter},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: StatusCodeInterceptor,

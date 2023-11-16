@@ -52,4 +52,21 @@ export class FormBaseComponent implements OnInit {
   cancelar(): void {
     this.router.navigate(['/'])
   }
+
+  addBarra(ev: any) {
+    const inputValue: string = ev.target.value;
+    const previousValue: string = ev.target.getAttribute('data-previous-value') || '';
+  
+    if (inputValue.length < previousValue.length) {
+      if (inputValue.length === 2 || inputValue.length === 5) {
+        ev.target.value = inputValue.slice(0, -1);
+      }
+    } else {
+      if (inputValue.length === 2 || inputValue.length === 5) {
+        ev.target.value = inputValue + '/';
+      }
+    }
+
+    ev.target.setAttribute('data-previous-value', ev.target.value);
+  }
 }
