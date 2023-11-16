@@ -15,7 +15,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CardHeroiComponent } from './components/card-heroi/card-heroi.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
@@ -27,7 +26,6 @@ import { StatusCodeInterceptor } from './core/interceptors/status-code.intercept
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     HomeComponent,
     CardHeroiComponent,
     CadastroComponent,

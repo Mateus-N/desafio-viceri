@@ -19,21 +19,23 @@ export class FormularioService {
       peso: new FormControl(null, [Validators.required]),
     })
   }
-
+  
   public getValues(): CreateHeroi {
     const dataNascimento = new Date(this.formBase?.get('dataNascimento')?.value)
     const formValues = this.formBase?.getRawValue() as CreateHeroi
     formValues.dataNascimento = dataNascimento
     return formValues
   }
-
+  
   public updateValues(heroi: Heroi) {
+    this.limparFormulario()
     this.formBase?.patchValue({
       nome: heroi.nome,
       nomeHeroi: heroi.nomeHeroi,
       dataNascimento: heroi.dataNascimento,
       peso: heroi.peso,
-      altura: heroi.altura
+      altura: heroi.altura,
+      superPoderes: null
     })
   }
 

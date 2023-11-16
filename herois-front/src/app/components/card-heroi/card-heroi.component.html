@@ -25,16 +25,18 @@
       <li *ngFor="let poder of heroi.heroiSuperPoderes">{{ poder.superPoderes.superPoder }}</li>
     </ul>
   </div>
-  <img
-    src="../../../assets/icons/edit-solid.svg"
-    class="icon"
-    alt="Icone de edição"
-    (click)="editarHeroi()"
-  >
-  <img
-    src="../../../assets/icons/trash-solid.svg"
-    class="icon"
-    alt="Icone de delete"
-    (click)="excluirHeroi()"
-  >
+  <div class="acoes">
+    <img
+      src="../../../assets/icons/edit-solid.svg"
+      class="icon"
+      alt="Icone de edição"
+      (click)="editarHeroi()"
+    >
+    <img
+      src="../../../assets/icons/trash-solid.svg"
+      class="icon"
+      alt="Icone de delete"
+      (click)="excluirHeroi()"
+    >
+  </div>
 </div>

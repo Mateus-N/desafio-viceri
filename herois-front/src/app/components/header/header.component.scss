@@ -1,12 +1,11 @@
 .cabecalho {
-  box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.4);
-  padding: 24px;
+  padding: 24px 40px 0 48px;
   display: flex;
   justify-content: space-between;
-  background-color: #F1F1F1;
-  h1 {
+  img {
+    width: 160px;
+    border-radius: 45px;
     margin: 0;
-    font-size: 36px;
     cursor: pointer;
   }
   button {
