@@ -57,9 +57,7 @@ export class FormBaseComponent implements OnInit {
     const inputValue: string = ev.target.value;
     const previousValue: string = ev.target.getAttribute('data-previous-value') || '';
 
-    if (inputValue.length > 10) {
-      ev.target.value = previousValue
-    } else if (inputValue.length < previousValue.length) {
+    if (inputValue.length < previousValue.length) {
       if (inputValue.length === 2 || inputValue.length === 5) {
         ev.target.value = inputValue.slice(0, -1);
       }
