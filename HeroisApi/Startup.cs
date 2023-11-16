@@ -14,7 +14,7 @@ public class Startup(IConfiguration configuration)
 
     public void ConfigureServices(IServiceCollection services)
     {
-        string connectionString = Configuration.GetConnectionString("ContextConnection")!;
+        string connectionString = Configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING")!;
 
         services.AddDbContext<AppDbContext>(opts => opts
             .UseLazyLoadingProxies()

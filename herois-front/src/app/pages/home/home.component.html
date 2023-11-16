@@ -5,4 +5,7 @@
     (excluir)="excluirHeroi($event)"
     (editar)="editarHeroi($event)"
   />
+  <div class="lista__vazia" *ngIf="herois.length === 0">
+    Não há heróis cadastrados
+  </div>
 </div>
