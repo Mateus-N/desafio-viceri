@@ -7,7 +7,7 @@ import { Heroi } from '../types/heroi';
   providedIn: 'root'
 })
 export class FormularioService {
-  formBase: FormGroup
+  formBase: FormGroup;
 
   constructor() {
     this.formBase = new FormGroup({
@@ -17,18 +17,18 @@ export class FormularioService {
       dataNascimento: new FormControl(null, [Validators.required]),
       altura: new FormControl(null, [Validators.required]),
       peso: new FormControl(null, [Validators.required]),
-    })
+    });
   }
   
   public getValues(): CreateHeroi {
-    const dataNascimento = new Date(this.formBase?.get('dataNascimento')?.value)
-    const formValues = this.formBase?.getRawValue() as CreateHeroi
-    formValues.dataNascimento = dataNascimento
-    return formValues
+    const dataNascimento = new Date(this.formBase?.get('dataNascimento')?.value);
+    const formValues = this.formBase?.getRawValue() as CreateHeroi;
+    formValues.dataNascimento = dataNascimento;
+    return formValues;
   }
   
   public updateValues(heroi: Heroi) {
-    this.limparFormulario()
+    this.limparFormulario();
     this.formBase?.patchValue({
       nome: heroi.nome,
       nomeHeroi: heroi.nomeHeroi,
@@ -36,10 +36,10 @@ export class FormularioService {
       peso: heroi.peso,
       altura: heroi.altura,
       superPoderes: null
-    })
+    });
   }
 
   public limparFormulario(): void {
-    this.formBase.reset()
+    this.formBase.reset();
   }
 }

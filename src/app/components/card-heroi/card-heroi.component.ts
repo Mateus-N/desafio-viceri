@@ -8,17 +8,17 @@ import { Heroi } from 'src/app/core/types/heroi';
 })
 export class CardHeroiComponent {
   @Input()
-  public heroi!: Heroi
+  public heroi!: Heroi;
   @Output()
   public excluir = new EventEmitter();
   @Output()
   public editar = new EventEmitter();
 
   excluirHeroi() {
-    return this.excluir.emit(this.heroi)
+    return this.excluir.emit(this.heroi);
   }
 
   editarHeroi() {
-    return this.editar.emit(this.heroi)
+    return this.editar.emit(this.heroi);
   }
 }

@@ -10,19 +10,19 @@ import { Heroi } from '../types/heroi';
 })
 export class HeroisService {
 
-  private readonly apiUrl: string = environment.apiUrl
+  private readonly apiUrl: string = environment.apiUrl;
 
   constructor(
     private readonly httpClient: HttpClient
   ) { }
 
   public listar(): Observable<Heroi[]> {
-    return this.httpClient.get<Heroi[]>(`${this.apiUrl}/herois`)
+    return this.httpClient.get<Heroi[]>(`${this.apiUrl}/herois`);
   }
 
   public criar(heroi: CreateHeroi): Observable<Heroi> {
-    console.log(heroi)
-    return this.httpClient.post<Heroi>(`${this.apiUrl}/herois`, heroi)
+    console.log(heroi);
+    return this.httpClient.post<Heroi>(`${this.apiUrl}/herois`, heroi);
   }
 
   public apagar(id: number): Observable<Heroi> {
@@ -30,6 +30,6 @@ export class HeroisService {
   }
 
   public editar(id: number, heroi: CreateHeroi): Observable<Heroi> {
-    return this.httpClient.put<Heroi>(`${this.apiUrl}/herois/${id}`, heroi)
+    return this.httpClient.put<Heroi>(`${this.apiUrl}/herois/${id}`, heroi);
   }
 }

@@ -11,7 +11,7 @@ import { Heroi } from 'src/app/core/types/heroi';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public herois: Heroi[] = []
+  public herois: Heroi[] = [];
 
   constructor(
     private readonly heroisService: HeroisService,
@@ -22,23 +22,23 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.heroisService.listar().subscribe({
-      next: res => this.herois = res
-    })
+      next: (res: Heroi[]) => this.herois = res
+    });
   }
 
   excluirHeroi(ev: Heroi) {
     this.heroisService.apagar(ev.id).subscribe({
       next: () => {
-        this.mensagemService.openSnackBar(`${ev.nomeHeroi} foi excluido dos registros`)
+        this.mensagemService.openSnackBar(`${ev.nomeHeroi} foi excluido dos registros`);
         this.heroisService.listar().subscribe({
-          next: res => this.herois = res
-        })
+          next: (res: Heroi[]) => this.herois = res
+        });
       }
-    })
+    });
   }
 
   editarHeroi(ev: Heroi) {
-    this.formularioService.updateValues(ev)
-    this.router.navigate([`/update/${ev.id}`])
+    this.formularioService.updateValues(ev);
+    this.router.navigate([`/update/${ev.id}`]);
   }
 }

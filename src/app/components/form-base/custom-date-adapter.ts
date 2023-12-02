@@ -4,7 +4,7 @@ import { NativeDateAdapter } from "@angular/material/core";
 @Injectable()
 export class CustomDateAdapter extends NativeDateAdapter {
 
-  override parse(value: any): Date | null {
+  override parse(value: string): Date | null {
 
     if ((typeof value === 'string') && (value.indexOf('/') > -1)) {
       const str = value.split('/');
@@ -19,7 +19,7 @@ export class CustomDateAdapter extends NativeDateAdapter {
     return isNaN(timestamp) ? null : new Date(timestamp);
   }
 
-  override format(date: Date, displayFormat: Object): string {
+  override format(date: Date, displayFormat: object): string {
     date = new Date(Date.UTC(
       date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(),
       date.getMinutes(), date.getSeconds(), date.getMilliseconds()));

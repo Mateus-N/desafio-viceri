@@ -13,21 +13,21 @@ export class CadastroComponent implements OnInit {
   constructor(
     private readonly formularioService: FormularioService,
     private readonly mensagemService: MensagemService,
-    private readonly heroisService : HeroisService,
+    private readonly heroisService: HeroisService,
     private readonly router: Router
   ) { }
 
   ngOnInit(): void {
-    this.formularioService.limparFormulario()
+    this.formularioService.limparFormulario();
   }
 
   cadastrarHeroi(): void {
-    const novoHeroi = this.formularioService.getValues()
+    const novoHeroi = this.formularioService.getValues();
     this.heroisService.criar(novoHeroi).subscribe({
       next: () => {
-        this.mensagemService.openSnackBar('Herói cadastrado com sucesso')
-        this.router.navigate(['/'])
+        this.mensagemService.openSnackBar('Herói cadastrado com sucesso');
+        this.router.navigate(['/']);
       }
-    })
+    });
   }
 }

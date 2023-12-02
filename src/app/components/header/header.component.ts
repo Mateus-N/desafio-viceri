@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @Input()
-  isHome: boolean = true
+  isHome = true;
 }

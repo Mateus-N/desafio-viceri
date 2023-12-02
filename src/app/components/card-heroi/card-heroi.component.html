@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div class="card__heroi">
   <div class="dados__pessoais">
     <p>Dados pessoais</p>
@@ -30,13 +31,13 @@
       src="../../../assets/icons/edit-solid.svg"
       class="icon"
       alt="Icone de edição"
-      (click)="editarHeroi()"
+      (keydown)="editarHeroi()"
     >
     <img
       src="../../../assets/icons/trash-solid.svg"
       class="icon"
       alt="Icone de delete"
-      (click)="excluirHeroi()"
+      (keydown)="excluirHeroi()"
     >
   </div>
 </div>

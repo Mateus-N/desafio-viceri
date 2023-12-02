@@ -1,4 +1,4 @@
-import { SuperPoder } from "./super-poder"
+import { SuperPoder } from "./super-poder";
 
 export interface Heroi {
   id: number,

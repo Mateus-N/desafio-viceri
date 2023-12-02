@@ -9,13 +9,13 @@ import { SuperPoder } from '../types/super-poder';
 })
 export class SuperPoderesService {
   
-  private readonly apiUrl: string = environment.apiUrl
+  private readonly apiUrl: string = environment.apiUrl;
 
   constructor(
     private readonly httpClient: HttpClient
   ) { }
 
   public listar(): Observable<SuperPoder[]> {
-    return this.httpClient.get<SuperPoder[]>(`${this.apiUrl}/superpoderes`)
+    return this.httpClient.get<SuperPoder[]>(`${this.apiUrl}/superpoderes`);
   }
 }

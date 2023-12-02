@@ -19,13 +19,14 @@ export class UpdateComponent {
   ) { }
 
   editar(): void {
-    const heroiEditado = this.formularioService.getValues()
-    const heroiId = Number.parseInt(this.route.snapshot.paramMap.get('id')!)
+    const heroiEditado = this.formularioService.getValues();
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const heroiId = Number.parseInt(this.route.snapshot.paramMap.get('id')!);
     this.heroisService.editar(heroiId, heroiEditado).subscribe({
       next: () => {
-        this.mensagemService.openSnackBar('Herói atualizado com sucesso')
-        this.router.navigate(['/'])
+        this.mensagemService.openSnackBar('Herói atualizado com sucesso');
+        this.router.navigate(['/']);
       }
-    })
+    });
   }
 }

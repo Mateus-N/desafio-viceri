@@ -12,47 +12,48 @@ import { SuperPoder } from 'src/app/core/types/super-poder';
 })
 export class FormBaseComponent implements OnInit {
   @Input()
-  ehTelaDeCadastro: boolean = true
+  ehTelaDeCadastro = true;
   @Input()
-  title: string = 'Novo Herói'
+  title = 'Novo Herói';
   @Input()
-  textButton: string = 'Cadastrar'
+  textButton = 'Cadastrar';
   @Output()
-  emitirEvento = new EventEmitter()
-  formBase: FormGroup
-  poderesSelecionados: number[] = []
-  superPoderes: SuperPoder[] = []
-  
+  emitirEvento = new EventEmitter();
+  formBase: FormGroup;
+  poderesSelecionados: number[] = [];
+  superPoderes: SuperPoder[] = [];
+
   constructor(
-    private readonly superPoderService : SuperPoderesService,
+    private readonly superPoderService: SuperPoderesService,
     private readonly formularioService: FormularioService,
     private readonly router: Router
   ) {
-    this.formBase = formularioService.formBase
+    this.formBase = formularioService.formBase;
   }
 
   ngOnInit(): void {
     this.superPoderService.listar().subscribe({
       next: res => this.superPoderes = res
-    })
+    });
 
     if (this.ehTelaDeCadastro) {
-      this.formBase.get('superPoderes')?.setValidators([Validators.required])
+      this.formBase.get('superPoderes')?.setValidators([Validators.required]);
     } else {
-      this.formBase.get('superPoderes')?.setValidators(null)
+      this.formBase.get('superPoderes')?.setValidators(null);
     }
 
-    this.formBase.get('superPoderes')?.updateValueAndValidity()
+    this.formBase.get('superPoderes')?.updateValueAndValidity();
   }
 
   enviarFormulario(): void {
-    this.emitirEvento.emit()
+    this.emitirEvento.emit();
   }
 
   cancelar(): void {
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   addBarra(ev: any) {
     const inputValue: string = ev.target.value;
     const previousValue: string = ev.target.getAttribute('data-previous-value') || '';
